@@ -1,37 +1,39 @@
 @extends('layouts.app')
 @section('content')
-<section class="content">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="box">
-        <div class="box-header">
-          <button class="btn btn-info pull-right" data-toggle="modal" data-target="#tambah-data">Tambah Data</button>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-         <table id="example1" class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
+      <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Data Umat Almarhum</h3>
+              <a href="#"  class="btn btn-info pull-right" data-toggle="modal" data-target="#tambah-data">Tambah Data</a>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                 <th>#</th>
                 <th>Nama</th>
                 <th>Tanggal Wafat</th>
                 <th>Tanggal Pemakaman</th>
                 <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($data as $dt)
-              <tr>
-                <td>{{$loop->iteration}}</td>
-                <td>{{$dt->umat->nama}}</td>
+                </tr>
+                </thead>
+                <tbody>
+                  @foreach ($data as $dt)
+                <tr>
+                     <td>{{$loop->iteration}}</td>
+                 <td>{{$dt->umat->nama}}</td>
                 <td>{{$dt->tgl_wafat}}</td>
                 <td>{{$dt->tgl_makam}}</td>
-                <td>
-                  <a href="" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit_modal{{$dt->id}}"> <i class="fa fa-edit"></i> Edit</a>
+                  <td class="text-center">
+                      <a href="" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit_modal{{$dt->id}}"> <i class="fa fa-edit"></i> Edit</a>
                   <a href="" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_modal{{$dt->id}}"><i class="fa fa-trash"></i> Delete</a>
-                </td>
-              </tr>
-              {{-- Modal Start --}}
+                  </td>
+                </tr>
+             {{-- Modal Start --}}
               <div class="modal fade" tabindex="-1" role="dialog" id="delete_modal{{$dt->id}}">
                 <div class="modal-dialog modal-sm" role="document">
                   <div class="modal-content">
@@ -54,8 +56,7 @@
                 </div><!-- /.modal-dialog -->
               </div><!-- /.modal -->
 {{-- END MODAL --}}
-
-              <div class="modal fade" id="edit_modal{{$dt->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" id="edit_modal{{$dt->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <form method="POST" action="{{ route('umat-almarhum-update', $dt->id) }}" enctype="multipart/form-data">
@@ -106,15 +107,14 @@
                   </div>
                 </div>
               </div>
-
-              @endforeach
-
-            </tbody>
-          </table>
-        </div>
-        <!-- /.box-body -->
-      </div>
-      <!-- Modal Tambah Data -->
+                @endforeach
+               
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+            <!-- Modal Tambah Data -->
       <div class="modal fade" id="tambah-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -164,21 +164,22 @@
           </div>
         </div>
       </div>
-
-    </div>
-  </div>
-</section>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
 @endsection
 @section('scripts')
-<script>
+    <script>
   $(function () {
-        $('#datepicker1').datepicker({
+    $('#datepicker1').datepicker({
       autoclose: true
     })
      $('#datepicker2').datepicker({
       autoclose: true
     })
-     $('.select2').select2()
     $('#example1').DataTable()
     $('#example2').DataTable({
       'paging'      : true,
@@ -190,5 +191,4 @@
     })
   })
 </script>
-
 @endsection
