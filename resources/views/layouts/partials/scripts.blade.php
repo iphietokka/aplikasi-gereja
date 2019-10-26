@@ -40,6 +40,10 @@
 
 <script src="{{ asset('js/bootstrap-notify.js') }}"></script>
 
+<script src="{{ asset('backend/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+<!-- datepicker -->
+<script src="{{ asset('backend/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+
 @if ($success = Session::get('success'))
 <script>
     $(document).ready(function() {

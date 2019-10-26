@@ -49,19 +49,20 @@
         <ul class="nav navbar-nav">
           <!-- User Account: style can be found in dropdown.less -->
           @if (Route::has('login'))
+          @auth
                <li >
                <a href="{{url('home')}}" >
-              <span class="hidden-xs">{{Auth::user()->name}}</span>
+              <span class="hidden-xs">Home</span>
             </a>
           </li>
           @else
-
           <li >
             <a href="{{ route('login') }}" >
               <span class="hidden-xs">Login</span>
             </a>
           </li>
           @endif
+            @endauth
         </ul>
       </div>
     </nav>
