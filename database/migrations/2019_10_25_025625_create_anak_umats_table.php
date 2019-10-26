@@ -16,6 +16,7 @@ class CreateAnakUmatsTable extends Migration
         Schema::create('anak_umats', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('umat_id')->nullable();
+            $table->integer('anak_ke');
             $table->string('nama');
             $table->integer('nik');
             $table->string('ttl');

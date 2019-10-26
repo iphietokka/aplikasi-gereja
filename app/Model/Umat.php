@@ -9,4 +9,9 @@ class Umat extends Model
     protected $fillable = [
         'nama', 'nik_kk', 'nik', 'ttl', 'usia', 'pekerjaan', 'status_kawin', 'alamat', 'sektor', 'unit'
     ];
+
+    public function anak()
+    {
+        return $this->hasMany('App\Model\AnakUmat', 'id', 'umat_id');
+    }
 }

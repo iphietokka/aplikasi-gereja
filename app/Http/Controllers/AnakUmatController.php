@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UmatRequest;
-use App\Model\AnakUmat;
+use App\Http\Requests\AnakUmatRequest;
 use Illuminate\Http\Request;
+use App\Model\AnakUmat;
 use App\Model\Umat;
 
-class UmatController extends Controller
+class AnakUmatController extends Controller
 {
     public function __construct()
     {
-        $this->title = "umat";
+        $this->title = "anak-umat";
     }
     /**
      * Display a listing of the resource.
@@ -21,8 +21,9 @@ class UmatController extends Controller
     public function index()
     {
         $title = $this->title;
-        $umat = Umat::with('anak')->orderBy('nama', 'desc')->get();
-        return view($title . '.index', compact('title', 'umat'));
+        $umat = Umat::pluck('nama', 'id');
+        $anakumat = AnakUmat::with('umat')->orderBy('nama', 'desc')->get();
+        return view($title . '.index', compact('title', 'umat', 'anakumat'));
     }
 
     /**
@@ -32,8 +33,7 @@ class UmatController extends Controller
      */
     public function create()
     {
-        $title = $this->title;
-        return view($title . '.create', compact('title'));
+        //
     }
 
     /**
@@ -42,19 +42,15 @@ class UmatController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UmatRequest $request)
+    public function store(AnakUmatRequest $request)
     {
-        $data = new Umat();
+        $data = new AnakUmat();
         $data->nama = $request->get('nama');
-        $data->nik_kk = $request->get('nik_kk');
         $data->nik = $request->get('nik');
         $data->ttl = $request->get('ttl');
-        $data->usia = $request->get('usia');
+        $data->anak_ke = $request->get('anak_ke');
         $data->pekerjaan = $request->get('pekerjaan');
-        $data->status_kawin = $request->get('status_kawin');
-        $data->alamat = $request->get('alamat');
-        $data->sektor = $request->get('sektor');
-        $data->unit = $request->get('unit');
+        $data->umat_id = $request->get('umat_id');
         if ($data->save()) {
             return redirect($this->title)->with('success', 'Berhasil');
         } else {
@@ -70,10 +66,7 @@ class UmatController extends Controller
      */
     public function show($id)
     {
-        $title = $this->title;
-        $umat = Umat::orderBy('nama', 'asc')->find($id);
-        $data = AnakUmat::with('umat')->where('umat_id', $umat->id)->orderBy('anak_ke', 'desc')->get();
-        return view($title . '.details', compact('title', 'umat', 'data'));
+        //
     }
 
     /**
@@ -84,9 +77,7 @@ class UmatController extends Controller
      */
     public function edit($id)
     {
-        $title = $this->title;
-        $data = Umat::find($id);
-        return view($title . '.edit', compact('title', 'data'));
+        //
     }
 
     /**
@@ -96,15 +87,9 @@ class UmatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $model = $request->all();
-        $data = Umat::find($model['id']);
-        if ($data->update($model)) {
-            return redirect($this->title)->with('success', 'Berhasil');
-        } else {
-            return redirect($this->title)->with('error', 'Gagal');
-        }
+        //
     }
 
     /**
@@ -115,11 +100,6 @@ class UmatController extends Controller
      */
     public function destroy($id)
     {
-        $data = Umat::find($id);
-        if ($data->delete()) {
-            return redirect($this->title)->with('success', 'Berhasil');
-        } else {
-            return redirect($this->title)->with('error', 'Gagal');
-        }
+        //
     }
 }

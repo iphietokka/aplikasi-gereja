@@ -20,12 +20,11 @@ class CreateUmatsTable extends Migration
             $table->integer('nik');
             $table->string('ttl');
             $table->integer('usia');
-            $table->integer('pekerjaan');
+            $table->string('pekerjaan');
             $table->enum('status_kawin', ['belum', 'kawin', 'cerai']);
             $table->string('alamat');
             $table->string('sektor');
             $table->string('unit');
-            // $table->integer('anak_id')->nullable();
             $table->timestamps();
         });
     }

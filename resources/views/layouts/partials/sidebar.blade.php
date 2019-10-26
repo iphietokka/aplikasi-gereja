@@ -2,7 +2,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Alexander Pierce</p>
@@ -29,6 +29,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('umat') }}"><i class="fa fa-circle-o"></i> Data Umat</a></li>
+             <li><a href="{{ url('anak-umat') }}"><i class="fa fa-circle-o"></i> Data Anak Umat</a></li>
             <li><a href="{{url('umat-almarhum')}}"><i class="fa fa-circle-o"></i> Data Umat Almarhum</a></li>
   
           </ul>

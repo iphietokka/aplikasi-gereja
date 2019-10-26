@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AnakUmat extends Model
 {
     protected $fillable = [
-        'umat_id', 'nama', 'ttl', 'nik', 'pekerjaan'
+        'umat_id', 'nama', 'ttl', 'nik', 'pekerjaan', 'anak_ke'
     ];
 
     public function umat()
